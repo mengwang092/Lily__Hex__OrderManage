@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Week3 Admin Order</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            // dropdown open/close
+            $(".dropdown__btn").click(function(){
+                $(this).parents(".dropdown").toggleClass("is-open");
+            });
+        });
+    </script>
+</head>
+
+
+<body>
+    <!-- header -->
+    <div class="header">
+        <div class="logo">Shoptime</div>
+        <div class="header-nav">
+            <div class="nav-list">
+                <a href="index.html" class="nav-list__item is-selected">HOME</a>
+                <a href="orders.html" class="nav-list__item">ORDERS</a>
+                <a href="product.html" class="nav-list__item">PRODUCT</a>
+            </div>
+        </div>
+        <div class="manager">ADMIN</div>
+    </div>
+
+
+    <!-- main -->
+    <div class="main">
+
+        <!-- main__overview -->
+        <div class="main__overview">
+            <div class="overview-topper">
+                <span class="main-title">Overview</span>
+                <div class="date-picker">
+                    <div class="date-picker__value">
+                        <span>2018/06/18</span>
+                        <i class="fas fa-caret-up"></i>
+                        <span>2018/06/25</span>
+                    </div>
+                    <div class="date-picker__range">
+                        <div class="dropdown">
+                            <div class="dropdown__btn">
+                            <span>Weekly</span>
+                            <i class="fas fa-caret-down"></i>
+                            </div>
+                            <ul class="dropdown__list">
+                                <li class="dropdown__item">Daily</li>
+                                <li class="dropdown__item">Weekly</li>
+                                <li class="dropdown__item">Monthly</li>
+                                <li class="dropdown__item">Yearly</li>
+                                <li class="dropdown__item">Custom</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="overview-result">
+                <div class="overview-counterbox">
+                    <div class="overview-counterbox__title">
+                        <i class="fas fa-hand-holding-usd"></i>
+                        <span>TOTAL COST</span>
+                    </div>
+                    <span class="value-cost overview-counterbox__value">45,112</span>
+                </div>
+                <div class="overview-counterbox">
+                    <div class="overview-counterbox__title">
+                        <i class="fas fa-boxes"></i>
+                        <span>TOTAL REVENUE</span>
+                    </div>
+                    <span class="value-revenue overview-counterbox__value">12,345</span>
+                </div>
+                <div class="overview-counterbox">
+                    <div class="overview-counterbox__title">
+                        <i class="fas fa-money-bill"></i>
+                        <span>NET INCOME</span>
+                    </div>
+                    <span class="value-income overview-counterbox__value">32,767</span>
+                </div>
+            </div>
+            <div class="overview-activity">
+                <span class="main-title">Activity</span>
+                <div class="overview-activity__data">
+                    <div id="container" style="max-width:100%;height:400px"></div>
+                    <script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+                    <script>
+                        var chart = Highcharts.chart('container', {
+                            title: {
+                                text: ''
+                            },
+                            subtitle: {
+                                text: ''
+                            },
+                            yAxis: {
+                                title: {
+                                    text: ''
+                                }
+                            },
+                            legend: {
+                                layout: 'vertical',
+                                align: 'right',
+                                verticalAlign: 'middle'
+                            },
+                            plotOptions: {
+                                series: {
+                                    label: {
+                                        connectorAllowed: false
+                                    },
+                                    pointStart: 2010
+                                }
+                            },
+                            series: [{
+                                name: 'TOTAL COST',
+                                data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+                            }, {
+                                name: 'NET INCOME',
+                                data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
+                            }, {
+                                name: 'TOTAL REVENUE',
+                                data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
+                            }],
+                            responsive: {
+                                rules: [{
+                                    condition: {
+                                        maxWidth: 500
+                                    },
+                                    chartOptions: {
+                                        legend: {
+                                            layout: 'horizontal',
+                                            align: 'center',
+                                            verticalAlign: 'bottom'
+                                        }
+                                    }
+                                }]
+                            }
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <!-- main__data-wrap -->
+        <div class="main__data-wrap">
+            <!-- main__transaction -->
+            <div class="data__transaction">
+                <span class="main-title">Transaction Website</span>
+                <ul class="transaction">
+                    <li class="transaction__item">
+                        <div class="transaction__item-name">
+                            <i class="fab fa-amazon"></i>
+                            <a href="index.html">amazon.com</a>
+                        </div>
+                        <div class="transaction__item-value">
+                            <span class="rate-count">45,836</span>
+                            <i class="fas fa-arrow-up"></i>
+                            <span class="rate">20%</span>
+                        </div>
+                    </li>
+                    <li class="transaction__item">
+                        <div class="transaction__item-name">
+                            <i class="fab fa-facebook"></i>
+                            <a href="index.html">facebook.com</a>
+                        </div>
+                        <div class="transaction__item-value">
+                            <span class="rate-count">45,836</span>
+                            <i class="fas fa-arrow-up"></i>
+                            <span class="rate">13%</span>
+                        </div>
+                    </li>
+                    <li class="transaction__item">
+                        <div class="transaction__item-name">
+                            <i class="fab fa-google"></i>
+                            <a href="index.html">google.com</a>
+                        </div>
+                        <div class="transaction__item-value">
+                            <span class="rate-count">45,836</span>
+                            <i class="fas fa-arrow-down"></i>
+                            <span class="rate down">9%</span>
+                        </div>
+                    </li>
+                    <li class="transaction__item">
+                        <div class="transaction__item-name">
+                            <i class="fab fa-wordpress"></i>
+                            <a href="index.html">wordpress.com</a>
+                        </div>
+                        <div class="transaction__item-value">
+                            <span class="rate-count">45,836</span>
+                            <i class="fas fa-arrow-down"></i>
+                            <span class="rate down">7%</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- main__latest-orders -->
+            <div class="data__latest-orders">
+                <span class="main-title">Latest Orders</span>
+                <ul class="orders-preview">
+                    <li class="orders__item">
+                        <img src="http://www.taghats.com/wp-content/uploads/2015/07/Heisenberg-Hat-Pictures.gif" alt="">
+                        <div class="orders__item-info">
+                            <div class="info-title">
+                                Pork pie Hat
+                            </div>
+                            <div class="info-time">
+                                <i class="fas fa-clock"></i>
+                                <span>2018/6/19</span>
+                                <span>13:42</span>
+                            </div>
+                            <div class="info-costumer">
+                                <i class="fas fa-user"></i>
+                                <span>Walter White</span>
+                            </div>
+                        </div>
+                        <div class="orders__item-price">
+                            <span>Total</span>
+                            <span class="value">1,299</span>
+                        </div>
+                    </li>
+                    <li class="orders__item">
+                        <img src="https://cdn.thisiswhyimbroke.com/images/tuco-grill-paperweight-640x533.jpg" alt="">
+                        <div class="orders__item-info">
+                            <div class="info-title">
+                                Golden Teeth
+                            </div>
+                            <div class="info-time">
+                                <i class="fas fa-clock"></i>
+                                <span>2018/6/19</span>
+                                <span>10:27</span>
+                            </div>
+                            <div class="info-costumer">
+                                <i class="fas fa-user"></i>
+                                <span>Hank Schrader</span>
+                            </div>
+                        </div>
+                        <div class="orders__item-price">
+                            <span>Total</span>
+                            <span class="value">3,380</span>
+                        </div>
+                    </li>
+                    <li class="orders__item">
+                        <img src="https://images-na.ssl-images-amazon.com/images/I/41hYPYNYVjL._SX450_.jpg" alt="">
+                        <div class="orders__item-info">
+                            <div class="info-title">
+                                Service Bell
+                            </div>
+                            <div class="info-time">
+                                <i class="fas fa-clock"></i>
+                                <span>2018/6/19</span>
+                                <span>06:47</span>
+                            </div>
+                            <div class="info-costumer">
+                                <i class="fas fa-user"></i>
+                                <span>Joaquin Salamanca</span>
+                            </div>
+                        </div>
+                        <div class="orders__item-price">
+                            <span>Total</span>
+                            <span class="value">199</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</body>
+</html>

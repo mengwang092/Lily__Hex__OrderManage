@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Week3 Admin Order</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            // dropdown open/close
+            $(".dropdown__btn").click(function(){
+                $(this).parents(".dropdown").toggleClass("is-open");
+            });
+            // order is selected
+            $(".table-checkbox").click(function(){
+                $(this).parents("tr").toggleClass("is-selected");
+            });
+            // order-filter is selected
+            $(".order-filter .filter-btn").click(function(){
+                $(this).parents(".dropdown__item").toggleClass("is-selected");
+            });
+        });
+    </script>
+</head>
+
+
+<body>
+    <!-- header -->
+    <div class="header">
+        <div class="logo">Shoptime</div>
+        <div class="header-nav">
+            <div class="nav-list">
+                <a href="index.html" class="nav-list__item">HOME</a>
+                <a href="orders.html" class="nav-list__item is-selected">ORDERS</a>
+                <a href="product.html" class="nav-list__item">PRODUCT</a>
+            </div>
+        </div>
+        <div class="manager">ADMIN</div>
+    </div>
+
+    <!-- Main -->
+    <div class="main">
+        <div class="main-header">
+            <div class="status-changer">
+                <div class="dropdown">
+                    <div class="dropdown__btn">
+                        <label>
+                            <i class="fas fa-square"></i>
+                            <i class="fas fa-caret-down"></i>
+                        </label>
+                    </div>
+                    <ul class="dropdown__list">
+                        <li class="dropdown__item is-selected">Select All</li>
+                        <li class="dropdown__item">Unselect All</li>
+                        <li class="dropdown__item">Paid</li>
+                        <li class="dropdown__item">Unpaid</li>
+                        <li class="dropdown__item">Shipping</li>
+                        <li class="dropdown__item">Done</li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <div class="dropdown__btn">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <ul class="dropdown__list">
+                        <li class="dropdown__item">Change Status to...</li>
+                        <li class="dropdown__item">Paid</li>
+                        <li class="dropdown__item">Unpaid</li>
+                        <li class="dropdown__item">Shipping</li>
+                        <li class="dropdown__item">Done</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="edit-detail">
+                <div class="dropdown">
+                    <div class="dropdown__btn">
+                    <span><b>EDIT SECTION</b></span>
+                    <i class="fas fa-caret-down"></i>
+                    </div>
+                    <ul class="dropdown__list order-filter">
+                        <li class="dropdown__item">
+                            <div class="filter-btn">
+                                <i class="fas fa-square"></i>
+                                <span>Order ID</span>
+                            </div>
+                        </li>
+                        <li class="dropdown__item">
+                            <div class="filter-btn">
+                                <i class="fas fa-square"></i>
+                                <span>Customer</span>
+                            </div>
+                        </li>
+                        <li class="dropdown__item">
+                            <div class="filter-btn">
+                                <i class="fas fa-square"></i>
+                                <span>Product List</span>
+                            </div>
+                        </li>
+                        <li class="dropdown__item">
+                            <div class="filter-btn">
+                                <i class="fas fa-square"></i>
+                                <span>Total</span>
+                            </div>
+                        </li>
+                        <li class="dropdown__item">
+                            <div class="filter-btn">
+                                <i class="fas fa-square"></i>
+                                <span>Add to Cart</span>
+                            </div>
+                        </li>
+                        <li class="dropdown__item">
+                            <div class="filter-btn">
+                                <i class="fas fa-square"></i>
+                                <span>Check Out</span>
+                            </div>
+                        </li>
+                        <li class="dropdown__item">
+                            <div class="filter-btn">
+                                <i class="fas fa-square"></i>
+                                <span>Address</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- table -->
+        <table class="table-order-manage">
+            <thead>
+                <tr>
+                    <th class="th-checkbox"></th>
+                    <th class="th-customer">
+                        <div>Customer</div>
+                    </th>
+                    <th class="th-product-list">
+                        <div>Product List</div>
+                    </th>
+                    <th class="th-total">
+                        <div>Total</div>
+                    </th>
+                    <th class="th-addtime">
+                        <div>Add to Cart</div>
+                    </th>
+                    <th class="th-outtime"> 
+                        <div>Check-Out</div>
+                    </th>
+                    <th class="th-address">
+                        <div>Address</div>
+                    </th>
+                    <th class="th-status">
+                        <div>Status</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <label>
+                            <input class="table-checkbox" type="checkbox">
+                            <i class="fas fa-square"></i>
+                        </label>
+                    </td>
+                    <td>
+                        <span>Daenerys Targaryen</span>
+                    </td>
+                    <td>
+                        <div class="cell">
+                            <div class="cell__body">
+                                <div class="cell__row">
+                                    <div class="cell__col">Raw Meat for Dragon</div>
+                                </div>
+                                <div class="cell__row">
+                                    <div class="cell__col">
+                                        <div class="cell__flex align-between">
+                                            <div class="cell__item lowlight">$899</div>
+                                            <div class="cell__item">20</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cell__body">
+                                <div class="cell__row">
+                                    <div class="cell__col">Vitamin for Dragon</div>
+                                </div>
+                                <div class="cell__row">
+                                    <div class="cell__col">
+                                        <div class="cell__flex align-between">
+                                            <div class="cell__item lowlight">$10,200</div>
+                                            <div class="cell__item">3</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div>$48,580</div>
+                    </td>
+                    <td>
+                        <div>2018/05/23</div>
+                        <div>21:18</div>
+                    </td>
+                    <td>
+                        <div>2018/05/23</div>
+                        <div>23:20</div>
+                    </td>
+                    <td>
+                        <span>khal, camp, Vaes Dothrak</span>
+                    </td>
+                    <td>
+                        <div class="cell">
+                            <div class="dropdown is-shipping">
+                                <div class="dropdown__btn">
+                                    <span>shipping</span>
+                                    <i class="fas fa-caret-down"></i>
+                                </div>
+                                <ul class="dropdown__list">
+                                    <li class="dropdown__item">Paid</li>
+                                    <li class="dropdown__item">Unpaid</li>
+                                    <li class="dropdown__item">Shipping</li>
+                                    <li class="dropdown__item">Done</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            <input class="table-checkbox" type="checkbox">
+                            <i class="fas fa-square"></i>
+                        </label>
+                    </td>
+                    <td>
+                        <span>Drogo Khal</span>
+                    </td>
+                    <td>
+                        <div class="cell">
+                            <div class="cell__body">
+                                <div class="cell__row">
+                                    <div class="cell__col">Dragon Egg</div>
+                                </div>
+                                <div class="cell__row">
+                                    <div class="cell__col">
+                                        <div class="cell__flex align-between">
+                                            <div class="cell__item lowlight">$4,999</div>
+                                            <div class="cell__item">3</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </td>
+                    <td>
+                        <div>$14,997</div>
+                    </td>
+                    <td>
+                        <div>2018/05/20</div>
+                        <div>20:14</div>
+                    </td>
+                    <td>
+                        <div>2018/05/20</div>
+                        <div>20:20</div>
+                    </td>
+                    <td>
+                        <span>khal, camp, Vaes Dothrak</span>
+                    </td>
+                    <td>
+                        <div class="cell">
+                            <div class="dropdown is-done">
+                                <div class="dropdown__btn">
+                                    <span>done</span>
+                                    <i class="fas fa-caret-down"></i>
+                                </div>
+                                <ul class="dropdown__list">
+                                    <li class="dropdown__item">Paid</li>
+                                    <li class="dropdown__item">Unpaid</li>
+                                    <li class="dropdown__item">Shipping</li>
+                                    <li class="dropdown__item">Done</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            <input class="table-checkbox" type="checkbox">
+                            <i class="fas fa-square"></i>
+                        </label>
+                    </td>
+                    <td>
+                        <span>Arya Stark</span>
+                    </td>
+                    <td>
+                        <div class="cell">
+                            <div class="cell__body">
+                                <div class="cell__row">
+                                    <div class="cell__col">Needle</div>
+                                </div>
+                                <div class="cell__row">
+                                    <div class="cell__col">
+                                        <div class="cell__flex align-between">
+                                            <div class="cell__item lowlight">$1,800</div>
+                                            <div class="cell__item">1</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cell__body">
+                                <div class="cell__row">
+                                    <div class="cell__col">Leather Boots</div>
+                                </div>
+                                <div class="cell__row">
+                                    <div class="cell__col">
+                                        <div class="cell__flex align-between">
+                                            <div class="cell__item lowlight">$499</div>
+                                            <div class="cell__item">1</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cell__body">
+                                <div class="cell__row">
+                                    <div class="cell__col">Wrist Guards</div>
+                                </div>
+                                <div class="cell__row">
+                                    <div class="cell__col">
+                                        <div class="cell__flex align-between">
+                                            <div class="cell__item lowlight">$219</div>
+                                            <div class="cell__item">1</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div>$2,518</div>
+                    </td>
+                    <td>
+                        <div>2018/03/16</div>
+                        <div>11:25</div>
+                    </td>
+                    <td>
+                        <div>2018/03/17</div>
+                        <div>18:11</div>
+                    </td>
+                    <td>
+                        <span>Castle, Winterfell, North, Westeros</span>
+                    </td>
+                    <td>
+                        <div class="cell">
+                            <div class="dropdown is-unpaid">
+                                <div class="dropdown__btn">
+                                    <span>unpaid</span>
+                                    <i class="fas fa-caret-down"></i>
+                                </div>
+                                <ul class="dropdown__list">
+                                    <li class="dropdown__item">Paid</li>
+                                    <li class="dropdown__item">Unpaid</li>
+                                    <li class="dropdown__item">Shipping</li>
+                                    <li class="dropdown__item">Done</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            <input class="table-checkbox" type="checkbox">
+                            <i class="fas fa-square"></i>
+                        </label>
+                    </td>
+                    <td>
+                        <span>Jon Snow</span>
+                    </td>
+                    <td>
+                        <div class="cell">
+                            <div class="cell__body">
+                                <div class="cell__row">
+                                    <div class="cell__col">Face Cream</div>
+                                </div>
+                                <div class="cell__row">
+                                    <div class="cell__col">
+                                        <div class="cell__flex align-between">
+                                            <div class="cell__item lowlight">$288</div>
+                                            <div class="cell__item">1</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cell__body">
+                                <div class="cell__row">
+                                    <div class="cell__col">Raw Meat for Wolf</div>
+                                </div>
+                                <div class="cell__row">
+                                    <div class="cell__col">
+                                        <div class="cell__flex align-between">
+                                            <div class="cell__item lowlight">$399</div>
+                                            <div class="cell__item">10</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div>$4,278</div>
+                    </td>
+                    <td>
+                        <div>2018/03/14</div>
+                        <div>16:46</div>
+                    </td>
+                    <td>
+                        <div>2018/03/14</div>
+                        <div>18:50</div>
+                    </td>
+                    <td>
+                        <span>Corws Camp, Night Watch, North, Westeros</span>
+                    </td>
+                    <td>
+                        <div class="cell">
+                            <div class="dropdown is-shipping">
+                                <div class="dropdown__btn">
+                                    <span>shipping</span>
+                                    <i class="fas fa-caret-down"></i>
+                                </div>
+                                <ul class="dropdown__list">
+                                    <li class="dropdown__item">Paid</li>
+                                    <li class="dropdown__item">Unpaid</li>
+                                    <li class="dropdown__item">Shipping</li>
+                                    <li class="dropdown__item">Done</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            <input class="table-checkbox" type="checkbox">
+                            <i class="fas fa-square"></i>
+                        </label>
+                    </td>
+                    <td>
+                        <span>Tyrion Lannister</span>
+                    </td>
+                    <td>
+                        <div class="cell">
+                            <div class="cell__body">
+                                <div class="cell__row">
+                                    <div class="cell__col">Stark's History</div>
+                                </div>
+                                <div class="cell__row">
+                                    <div class="cell__col">
+                                        <div class="cell__flex align-between">
+                                            <div class="cell__item lowlight">$300</div>
+                                            <div class="cell__item">1</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cell__body">
+                                <div class="cell__row">
+                                    <div class="cell__col">Targaryen's History</div>
+                                </div>
+                                <div class="cell__row">
+                                    <div class="cell__col">
+                                        <div class="cell__flex align-between">
+                                            <div class="cell__item lowlight">$300</div>
+                                            <div class="cell__item">1</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div>$600</div>
+                    </td>
+                    <td>
+                        <div>2018/03/10</div>
+                        <div>09:12</div>
+                    </td>
+                    <td>
+                        <div>2018/03/10</div>
+                        <div>12:30</div>
+                    </td>
+                    <td>
+                        <span>Caterly Rock, West, Westeros</span>
+                    </td>
+                    <td>
+                        <div class="cell">
+                            <div class="dropdown is-paid">
+                                <div class="dropdown__btn">
+                                    <span>paid</span>
+                                    <i class="fas fa-caret-down"></i>
+                                </div>
+                                <ul class="dropdown__list">
+                                    <li class="dropdown__item">Paid</li>
+                                    <li class="dropdown__item">Unpaid</li>
+                                    <li class="dropdown__item">Shipping</li>
+                                    <li class="dropdown__item">Done</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            <input class="table-checkbox" type="checkbox">
+                            <i class="fas fa-square"></i>
+                        </label>
+                    </td>
+                    <td>
+                        <span>Bran Stark</span>
+                    </td>
+                    <td>
+                        <div class="cell">
+                            <div class="cell__body">
+                                <div class="cell__row">
+                                    <div class="cell__col">Raw Meat for Wolf</div>
+                                </div>
+                                <div class="cell__row">
+                                    <div class="cell__col">
+                                        <div class="cell__flex align-between">
+                                            <div class="cell__item lowlight">$399</div>
+                                            <div class="cell__item">10</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div>$3,990</div>
+                    </td>
+                    <td>
+                        <div>2018/03/08</div>
+                        <div>12:47</div>
+                    </td>
+                    <td>
+                        <div>2018/03/08</div>
+                        <div>13:33</div>
+                    </td>
+                    <td>
+                        <span>Castle, Winterfell, North, Westeros</span>
+                    </td>
+                    <td>
+                        <div class="cell">
+                            <div class="dropdown is-paid">
+                                <div class="dropdown__btn">
+                                    <span>paid</span>
+                                    <i class="fas fa-caret-down"></i>
+                                </div>
+                                <ul class="dropdown__list">
+                                    <li class="dropdown__item">Paid</li>
+                                    <li class="dropdown__item">Unpaid</li>
+                                    <li class="dropdown__item">Shipping</li>
+                                    <li class="dropdown__item">Done</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Main-Footer -->
+        <div class="main-footer">
+                <div class="page-nav">
+                    <div class="page-nav-btn">
+                        <span class="fas fa-angle-double-left"></span>
+                    </div>
+                    <div class="page-nav-btn is-selected">
+                        <span>1</span>
+                    </div>
+                    <div class="page-nav-btn">
+                        <span>2</span>
+                    </div>
+                    <div class="page-nav-btn">
+                        <span>3</span>
+                    </div>
+                    <div class="page-nav-btn">
+                        <span>4</span>
+                    </div>
+                    <div class="page-nav-btn">
+                        <span>5</span>
+                    </div>
+                    <div class="page-nav-btn">
+                        <span class="fas fa-angle-double-right"></span>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+</body>
+</html>

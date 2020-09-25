@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Week3 Admin Order</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            // dropdown open/close
+            $(".dropdown__btn").click(function(){
+                $(this).parents(".dropdown").toggleClass("is-open");
+            });
+            // order is selected
+            $(".table-checkbox").click(function(){
+                $(this).parents("tr").toggleClass("is-selected");
+            });
+            // add is open
+            $(".popup-btn").click(function(){
+                $(".add,.mask").toggleClass("is-open");
+            });
+            // add is cancel
+            $(".add__header .fa-times").click(function(){
+                $(".add,.mask").removeClass("is-open");
+            });
+            // add is cancel
+            $(".add__cancel").click(function(){
+                $(".add,.mask").removeClass("is-open");
+            });
+        });
+    </script>
+</head>
+
+
+<body>
+
+    <!-- header -->
+    <div class="header">
+        <div class="logo">Shoptime</div>
+        <div class="header-nav">
+            <div class="nav-list">
+                <a href="index.html" class="nav-list__item">HOME</a>
+                <a href="orders.html" class="nav-list__item">ORDERS</a>
+                <a href="product.html" class="nav-list__item is-selected">PRODUCT</a>
+            </div>
+        </div>
+        <div class="manager">ADMIN</div>
+    </div>
+
+    <!-- body -->
+    <div class="main">
+        <div class="main-header">
+            <div class="status-changer">
+                <div class="dropdown">
+                    <div class="dropdown__btn">
+                        <i class="fas fa-square"></i>
+                        <i class="fas fa-caret-down"></i>
+                    </div>
+                    <ul class="dropdown__list">
+                        <li class="dropdown__item is-selected">Select All</li>
+                        <li class="dropdown__item">Unselect All</li>
+                        <li class="dropdown__item">Paid</li>
+                        <li class="dropdown__item">Unpaid</li>
+                        <li class="dropdown__item">Shipping</li>
+                        <li class="dropdown__item">Done</li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <div class="dropdown__btn">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <ul class="dropdown__list">
+                        <li class="dropdown__item">Change Status to...</li>
+                        <li class="dropdown__item">Paid</li>
+                        <li class="dropdown__item">Unpaid</li>
+                        <li class="dropdown__item">Shipping</li>
+                        <li class="dropdown__item">Done</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="other-behavior">
+                <div class="behavior">
+                    <a class="behavior__btn popup-btn">
+                        <span>ADD NEW PRODUCT</span>
+                        <i class="fas fa-plus"></i>
+                    </a>
+                    <div class="behavior__btn alert-color">
+                        <i class="fas fa-trash-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- table -->
+        <table class="table-product-manage">
+            <thead>
+                <tr>
+                    <th class="th-checkbox"></th>
+                    <th class="th-product">
+                        <div>Product</div>
+                    </th>
+                    <th class="th-original">
+                        <div>Original</div>
+                    </th>
+                    <th class="th-discount">
+                        <div>Discount</div>
+                    </th>
+                    <th class="th-inventory">
+                        <div class="cell">
+                            <div class="cell__col">Size</div>
+                            <div class="cell__col">Color</div>
+                            <div class="cell__col align-right">Inventory</div>
+                        </div>
+                    </th>
+                    <th class="padding-left">
+                        <div>Status</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <label>
+                            <input class="table-checkbox" type="checkbox">
+                            <i class="fas fa-square"></i>
+                        </label>
+                    </td>
+                    <td>
+                        <img src="https://img.etsystatic.com/il/cfae27/997172835/il_fullxfull.997172835_ikox.jpg?version=1" alt="">
+                        <span>Dragon Egg</span>
+                    </td>
+                    <td>
+                        <div class="cell__flex">
+                            <div class="cell__item">$6,600</div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="cell__flex">
+                            <div class="cell__item">$4,999</div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="cell">
+                            <div class="cell__body">
+                                <div class="cell__row">
+                                    <div class="cell__col">F</div>
+                                    <div class="cell__col">Black</div>
+                                    <div class="cell__col align-right">9</div>
+                                </div>
+                                <div class="cell__row">
+                                    <div class="cell__col"></div>
+                                    <div class="cell__col">Grey</div>
+                                    <div class="cell__col align-right">9</div>
+                                </div>
+                                <div class="cell__row">
+                                    <div class="cell__col"></div>
+                                    <div class="cell__col">Green</div>
+                                    <div class="cell__col align-right">9</div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="padding-left">
+                        <div class="cell">
+                            <div class="dropdown is-disabled">
+                                <div class="dropdown__btn">
+                                    <span>disabled</span>
+                                    <i class="fas fa-caret-down"></i>
+                                </div>
+                                <ul class="dropdown__list">
+                                    <li class="dropdown__item">Disabled</li>
+                                    <li class="dropdown__item">Published</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            <input class="table-checkbox" type="checkbox">
+                            <i class="fas fa-square"></i>
+                        </label>
+                    </td>
+                    <td>
+                        <img src="https://images-na.ssl-images-amazon.com/images/I/71yih0OD31L._UY395_.jpg" alt="">
+                        <span>Leather Boots</span>
+                    </td>
+                    <td>
+                        <div class="cell__flex">
+                            <div class="cell__item">$800</div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="cell__flex">
+                            <div class="cell__item">$499</div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="cell">
+                            <div class="cell__body">
+                                <div class="cell__row">
+                                    <div class="cell__col">L</div>
+                                    <div class="cell__col">Black</div>
+                                    <div class="cell__col align-right">20</div>
+                                </div>
+                                <div class="cell__row">
+                                    <div class="cell__col"></div>
+                                    <div class="cell__col">Brown</div>
+                                    <div class="cell__col align-right">20</div>
+                                </div>
+                            </div>
+                            <div class="cell__body">
+                                <div class="cell__row">
+                                    <div class="cell__col">M</div>
+                                    <div class="cell__col">Black</div>
+                                    <div class="cell__col align-right">17</div>
+                                </div>
+                                <div class="cell__row">
+                                    <div class="cell__col"></div>
+                                    <div class="cell__col">Brown</div>
+                                    <div class="cell__col align-right">3</div>
+                                </div>
+                            </div>
+                            <div class="cell__body">
+                                <div class="cell__row">
+                                    <div class="cell__col">S</div>
+                                    <div class="cell__col">Black</div>
+                                    <div class="cell__col align-right">20</div>
+                                </div>
+                                <div class="cell__row">
+                                    <div class="cell__col"></div>
+                                    <div class="cell__col">Brown</div>
+                                    <div class="cell__col align-right">20</div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="padding-left">
+                        <div class="cell">
+                            <div class="dropdown is-published">
+                                <div class="dropdown__btn">
+                                    <span>Published</span>
+                                    <i class="fas fa-caret-down"></i>
+                                </div>
+                                <ul class="dropdown__list">
+                                    <li class="dropdown__item">Disabled</li>
+                                    <li class="dropdown__item">Published</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            <input class="table-checkbox" type="checkbox">
+                            <i class="fas fa-square"></i>
+                        </label>
+                    </td>
+                    <td>
+                        <img src="https://userscontent2.emaze.com/images/c8729d56-2a25-46b7-ac99-dfd49f6dc1dd/f9dbef62fbfabd98bb1726e0be108ea9.jpg" alt="">
+                        <span>Leather Amour</span>
+                    </td>
+                    <td>
+                        <div class="cell__flex">
+                            <div class="cell__item">$2,999</div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="cell__flex">
+                            <div class="cell__item">$2,799</div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="cell">
+                            <div class="cell__body">
+                                <div class="cell__row">
+                                    <div class="cell__col">L</div>
+                                    <div class="cell__col">Black</div>
+                                    <div class="cell__col align-right">20</div>
+                                </div>
+                                <div class="cell__row">
+                                    <div class="cell__col"></div>
+                                    <div class="cell__col">Brown</div>
+                                    <div class="cell__col align-right">20</div>
+                                </div>
+                            </div>
+                            <div class="cell__body">
+                                <div class="cell__row">
+                                    <div class="cell__col">M</div>
+                                    <div class="cell__col">Black</div>
+                                    <div class="cell__col align-right">17</div>
+                                </div>
+                                <div class="cell__row">
+                                    <div class="cell__col"></div>
+                                    <div class="cell__col">Brown</div>
+                                    <div class="cell__col align-right">3</div>
+                                </div>
+                            </div>
+                            <div class="cell__body">
+                                <div class="cell__row">
+                                    <div class="cell__col">S</div>
+                                    <div class="cell__col">Black</div>
+                                    <div class="cell__col align-right">20</div>
+                                </div>
+                                <div class="cell__row">
+                                    <div class="cell__col"></div>
+                                    <div class="cell__col">Brown</div>
+                                    <div class="cell__col align-right">20</div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="padding-left">
+                        <div class="cell">
+                            <div class="dropdown is-published">
+                                <div class="dropdown__btn">
+                                    <span>Published</span>
+                                    <i class="fas fa-caret-down"></i>
+                                </div>
+                                <ul class="dropdown__list">
+                                    <li class="dropdown__item">Disabled</li>
+                                    <li class="dropdown__item">Published</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            <input class="table-checkbox" type="checkbox">
+                            <i class="fas fa-square"></i>
+                        </label>
+                    </td>
+                    <td>
+                        <img src="https://vignette.wikia.nocookie.net/elemud/images/d/da/Leather-Helmet.jpg/revision/latest?cb=20160410012526" alt="">
+                        <span>Leather Helmet</span>
+                    </td>
+                    <td>
+                        <div class="cell__flex">
+                            <div class="cell__item">$1,200</div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="cell__flex">
+                            <div class="cell__item">$999</div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="cell">
+                            <div class="cell__body">
+                                <div class="cell__row">
+                                    <div class="cell__col">L</div>
+                                    <div class="cell__col">Black</div>
+                                    <div class="cell__col align-right">20</div>
+                                </div>
+                                <div class="cell__row">
+                                    <div class="cell__col"></div>
+                                    <div class="cell__col">Brown</div>
+                                    <div class="cell__col align-right">20</div>
+                                </div>
+                            </div>
+                            <div class="cell__body">
+                                <div class="cell__row">
+                                    <div class="cell__col">M</div>
+                                    <div class="cell__col">Black</div>
+                                    <div class="cell__col align-right">17</div>
+                                </div>
+                                <div class="cell__row">
+                                    <div class="cell__col"></div>
+                                    <div class="cell__col">Brown</div>
+                                    <div class="cell__col align-right">3</div>
+                                </div>
+                            </div>
+                            <div class="cell__body">
+                                <div class="cell__row">
+                                    <div class="cell__col">S</div>
+                                    <div class="cell__col">Black</div>
+                                    <div class="cell__col align-right">20</div>
+                                </div>
+                                <div class="cell__row">
+                                    <div class="cell__col"></div>
+                                    <div class="cell__col">Brown</div>
+                                    <div class="cell__col align-right">20</div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="padding-left">
+                        <div class="cell">
+                            <div class="dropdown is-published">
+                                <div class="dropdown__btn">
+                                    <span>Published</span>
+                                    <i class="fas fa-caret-down"></i>
+                                </div>
+                                <ul class="dropdown__list">
+                                    <li class="dropdown__item">Disabled</li>
+                                    <li class="dropdown__item">Published</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            <input class="table-checkbox" type="checkbox">
+                            <i class="fas fa-square"></i>
+                        </label>
+                    </td>
+                    <td>
+                        <img src="http://www.chronicle.co.zw/wp-content/uploads/2015/11/steaks.jpg" alt="">
+                        <span>Raw Meat for Wolf</span>
+                    </td>
+                    <td>
+                        <div class="cell__flex">
+                            <div class="cell__item">$439</div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="cell__flex">
+                            <div class="cell__item">$399</div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="cell">
+                            <div class="cell__body">
+                                <div class="cell__row">
+                                    <div class="cell__col">F</div>
+                                    <div class="cell__col">None</div>
+                                    <div class="cell__col align-right">106</div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="padding-left">
+                        <div class="cell">
+                            <div class="dropdown is-disabled">
+                                <div class="dropdown__btn">
+                                    <span>disabled</span>
+                                    <i class="fas fa-caret-down"></i>
+                                </div>
+                                <ul class="dropdown__list">
+                                    <li class="dropdown__item">Disabled</li>
+                                    <li class="dropdown__item">Published</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            <input class="table-checkbox" type="checkbox">
+                            <i class="fas fa-square"></i>
+                        </label>
+                    </td>
+                    <td>
+                        <img src="https://cdn.firstwefeast.com/assets/2014/04/cvmc-main-photo-4.jpg" alt="">
+                        <span>Raw Meat for Dragon</span>
+                    </td>
+                    <td>
+                        <div class="cell__flex">
+                            <div class="cell__item">$1,099</div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="cell__flex">
+                            <div class="cell__item">$899</div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="cell">
+                            <div class="cell__body">
+                                <div class="cell__row">
+                                    <div class="cell__col">F</div>
+                                    <div class="cell__col">None</div>
+                                    <div class="cell__col align-right">106</div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="padding-left">
+                        <div class="cell">
+                            <div class="dropdown is-published">
+                                <div class="dropdown__btn">
+                                    <span>Published</span>
+                                    <i class="fas fa-caret-down"></i>
+                                </div>
+                                <ul class="dropdown__list">
+                                    <li class="dropdown__item">Disabled</li>
+                                    <li class="dropdown__item">Published</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- add -->
+        <div class="add">
+
+            <!-- add__header -->
+            <div class="add__header">
+                <div class="add__container">ADD NEW PRODUCT</div>
+                <div class="add__container">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+    
+            <!-- add__body -->
+            <div class="add__body">
+    
+                <div class="add__container">
+                    <label class="add__upload">
+                        <input type="file">
+                        <div class="add__upload-inner">
+                            <div><i class="fas fa-cloud-upload-alt"></i></div>
+                            <div>Drag an image or click here to upload...</div>
+                        </div>
+                    </label>
+                    <div class="add__imgs">
+                        <div class="add__row">
+                            <div class="add__imgs-inner">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhsOH73xdG4z5zJ_UlwuZY6298A18fgcKrvq1iFd7lCllDQqSjSg" alt="">
+                            </div>
+                            <div class="add__imgs-inner">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhsOH73xdG4z5zJ_UlwuZY6298A18fgcKrvq1iFd7lCllDQqSjSg" alt="">
+                            </div>
+                            <div class="add__imgs-inner">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhsOH73xdG4z5zJ_UlwuZY6298A18fgcKrvq1iFd7lCllDQqSjSg" alt="">
+                            </div>
+                        </div>
+                        <div class="add__row">
+                            <div class="add__imgs-inner">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhsOH73xdG4z5zJ_UlwuZY6298A18fgcKrvq1iFd7lCllDQqSjSg" alt="">
+                            </div>
+                            <div class="add__imgs-inner">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhsOH73xdG4z5zJ_UlwuZY6298A18fgcKrvq1iFd7lCllDQqSjSg" alt="">
+                            </div>
+                            <div class="add__imgs-inner">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhsOH73xdG4z5zJ_UlwuZY6298A18fgcKrvq1iFd7lCllDQqSjSg" alt="">
+                            </div>
+                        </div>
+                        <div class="add__row">
+                            <div class="add__imgs-inner">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhsOH73xdG4z5zJ_UlwuZY6298A18fgcKrvq1iFd7lCllDQqSjSg" alt="">
+                            </div>
+                            <div class="add__imgs-inner">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhsOH73xdG4z5zJ_UlwuZY6298A18fgcKrvq1iFd7lCllDQqSjSg" alt="">
+                            </div>
+                            <div class="add__imgs-inner">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhsOH73xdG4z5zJ_UlwuZY6298A18fgcKrvq1iFd7lCllDQqSjSg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="add__container">
+                    <div class="add__wrap">
+                        <div class="add__discrip">
+                            <div class="add__heading">Product Discription</div>
+                            <div class="add__row">
+                                <input type="text" placeholder="Your Product Title In Here">
+                            </div>
+                            <div class="add__row">
+                                <textarea cols="30" rows="10" placeholder="Your Product Discription In Here"></textarea>
+                            </div>
+                        </div>
+                        <div class="add__discrip">
+                            <div class="add__heading">Price</div>
+                            <div class="add__row">
+                                <div class="add__field">
+                                    <div class="add__field-title">
+                                        <span>Original</span>
+                                    </div>
+                                    <input type="text" class="add__field-value">
+                                </div>
+                                <div class="add__field">
+                                    <div class="add__field-title">
+                                        <span>Discount</span>
+                                    </div>
+                                    <input type="text" class="add__field-value">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="add__discrip">
+                            <div class="add__heading">Specification</div>
+                            <div class="add__row">
+                                <div class="add__field">
+                                    <div class="add__field-title">
+                                        <span>Size</span>
+                                    </div>
+                                    <input type="text" class="add__field-value">
+                                </div>
+                                <div class="add__field">
+                                    <div class="add__field-title">
+                                        <span>Color</span>
+                                    </div>
+                                    <input type="text" class="add__field-value">
+                                </div>
+                                <div class="add__field">
+                                    <div class="add__field-title">
+                                        <span>Inventory</span>
+                                    </div>
+                                    <input type="text" class="add__field-value">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="other-behavior">
+                            <div class="behavior">
+                                <a class="behavior__btn">
+                                    <span>ADD NEW SPECIFICATION</span>
+                                    <i class="fas fa-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- add__footer -->
+            <div class="add__footer">
+                <div class="other-behavior">
+                    <div class="behavior">
+                        <div class="add__btn add__publish">
+                            <span>PUBLISH</span>
+                        </div>
+                    </div>
+                    <div class="behavior">
+                        <div class="add__btn add__save">
+                            <span>SAVE</span>
+                        </div>
+                    </div>
+                    <div class="behavior">
+                        <div class="add__btn add__cancel">
+                            <span>CANCEL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="mask"></div>
+
+        <!-- Main-Footer -->
+        <div class="main-footer">
+            <div class="page-nav">
+                <div class="page-nav-btn">
+                    <span class="fas fa-angle-double-left"></span>
+                </div>
+                <div class="page-nav-btn is-selected">
+                    <span>1</span>
+                </div>
+                <div class="page-nav-btn">
+                    <span>2</span>
+                </div>
+                <div class="page-nav-btn">
+                    <span>3</span>
+                </div>
+                <div class="page-nav-btn">
+                    <span>4</span>
+                </div>
+                <div class="page-nav-btn">
+                    <span>5</span>
+                </div>
+                <div class="page-nav-btn">
+                    <span class="fas fa-angle-double-right"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

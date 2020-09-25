@@ -1,0 +1,575 @@
+// Colors
+// ----------------------------
+// the components color
+$alert : #D0021B;
+$in-progress : #F5A623;
+$is-done : #4A90E2;
+$is-success : #7ED321;
+$disabled: #9B9B9B;
+$input-border: rgb(169, 169, 169);
+
+// the layout color
+$background : #f2f2f2;
+$list-divide : #EBEBEB;
+$grey-4 : #757575;
+$grey-3 : #c8c8c8;
+$grey-2 : #e1e1e1;
+$grey-1 : #f2f2f2;
+$black : #000;
+$white : #fff;
+
+
+
+// Settings
+// ----------------------------
+*,*::before,*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    background-color: $background;
+    min-width: 1000px;
+}
+
+ul, li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    background-color: inherit;
+}
+
+input[type="file"] {
+    opacity: 0;
+    position: absolute;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+// Components 元件類
+// ----------------------------
+// 導航欄
+// navigations 
+.nav-list {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+
+    // .nav-list__item 
+    &__item {
+        display: flex;
+        align-items: center;
+        position: relative;
+        padding: 0 24px;
+        color: $disabled;
+        cursor: pointer;
+
+        &:hover { color: $white; }
+
+        &.is-selected {
+            color: $white;
+
+            &::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                height: 4px;
+                background-color: $white;
+            }
+        }
+    }
+}
+
+
+// 行為按鈕
+// behavior button 
+.behavior {
+    display: flex;
+    flex-direction: row;
+
+    &__btn {
+        display: flex;
+        align-items: center;
+        padding: 10px 20px;
+        border-radius: 4px;
+        background-color: $black;
+        color: $white;
+        font-size: 14px;
+        cursor: pointer;
+
+        span, i { 
+            line-height: 1; 
+        }
+
+        span + i {
+            margin-left: 8px;
+        }
+
+        + .behavior__btn {
+            margin-left: 20px;
+        }
+    }
+
+    .alert-color {
+        background-color: $alert;
+        transition: 0.2s;
+
+        &:hover {
+            background-color: red;
+        }
+    }
+}
+
+
+// 下拉式選單
+// dropdown 
+.dropdown {
+    position: relative;
+
+    .dropdown__btn {
+        padding: 0 8px;
+        cursor: pointer;
+
+        i {
+            padding: 0 8px;
+            color: $black;
+        }
+    }
+
+    .dropdown__list {
+        z-index: 1;
+        position: absolute;
+        right: 8px;
+        top: calc(100% + 8px);
+        display: none;
+        flex-direction: column;
+        border-radius: 2px;
+        box-shadow: 1px 2px 10px 0 #9B9B9B;
+        background-color: $white;
+        color: $black;
+    }
+
+    .dropdown__item {
+        display: flex;
+        justify-content: center;
+        padding: 8px 30px;
+        white-space: nowrap; 
+        cursor: pointer;
+
+        &:hover,
+        &.is-selected {
+            background-color: $black;
+            color: $white;
+        }
+    }
+
+    // .dropsown.is-open
+    &.is-open {
+        .dropdown__list {
+            display: flex;
+        }
+    }
+}
+
+
+
+// 訂單預覽
+// .orders-preview (in latest orders)
+.orders-preview {
+    padding: 16px 0;
+
+    .orders__item {
+        display: flex; 
+        flex-direction: row;
+        padding: 8px 0;
+        border-bottom: 1px solid #EBEBEB;
+        cursor: pointer;
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        img {
+            flex: 0 0 auto;
+            width: 100px;
+            height: 100px;
+            background-position: 50%;
+            background-size: cover;
+        }
+
+        // .orders__item-info
+        &-info {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+            padding: 8px 20px;
+            padding-right: 0;
+            color: $disabled;
+
+            i { 
+                font-size: 12px; 
+                margin-right: 4px;
+            }
+
+            .info-title {
+                color: $black;
+                font-size: 20px;
+                font-weight: 700;
+                margin-bottom: 16px;
+            }
+
+            .info-time {
+                display: flex;
+                align-items: center;
+                margin: 4px 0;
+
+                span + span { margin-left: 10px; }
+            }
+
+            .info-costumer {
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        // .orders__item-price
+        &-price {
+            flex: 0 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-end;
+
+            .value {
+                font-size: 20px;
+                font-weight: 700;
+            }
+
+            span {
+                font-size: 14px;
+                font-weight: 500;
+            }
+        }
+    }
+}
+
+
+
+// 表格 
+// table set
+// ---------------------------
+table {
+    table-layout: fixed;
+    border-spacing: 0;
+    width: 100%;
+
+    td, th {
+        padding: 10px 10px;
+        text-align: left;
+        vertical-align: top;
+    }
+
+    th {
+        line-height: 1.2;
+    }
+
+    .td-status {
+        position: relative;
+
+        .dropdown {
+            position: absolute;
+            left: 30px;
+            bottom: 10px;
+        }
+    }
+
+    td {
+        word-wrap: break-word;
+        padding-top: 20px;
+        padding-bottom: 20px;
+
+        img {
+
+            $img-size: 50px;
+            
+            width: $img-size;
+            height: $img-size;
+            position: absolute;
+            margin-top: calc(-#{$img-size} / 4);
+
+            + span {
+                display: inline-block;
+                padding-left: calc(#{$img-size} + 8px);
+            }
+        }
+    }
+
+    thead {
+        background-color: $white;
+    }
+
+    tbody {
+        tr:nth-child(even) {
+            background-color: #EBEBEB;
+        }
+    }
+
+    label {
+        display: flex;
+
+        .fa-square {
+            color: #fff;
+            line-height: 1.5;
+        }
+
+        input:checked ~ i::before {
+            content: "\f14a";
+            color: #000;
+        }
+    }
+
+
+    .padding-right {
+        padding-right: 30px;
+    }
+
+    .padding-left {
+        padding-left: 30px;
+    }
+
+
+    .cell {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+
+        &__body {
+            display: table-row-group;
+
+            .cell__row .cell__col {
+                padding-bottom: 8px;
+            }
+
+            + .cell__body .cell__row:first-child .cell__col {
+                border-top: 1px solid $white;
+                padding-top: 8px;
+            }
+        }
+
+        &__row {
+            display: table-row;
+        }
+
+        &__col {
+            display: table-cell;
+            word-wrap: break-word;
+
+            &:empty::before {
+                content: " ";
+                white-space: pre;
+            }
+        }
+
+        &__flex {
+            display: flex;
+        }
+
+        &__item {
+            word-wrap: break-word;
+            min-width: 0;
+        }
+
+        .lowlight {
+            color: $disabled;
+        }
+
+        .align-right {
+            text-align: right;
+        }
+
+        .align-between {
+            justify-content: space-between;
+        }
+    }
+}
+
+
+
+// table of order-manage
+.table-order-manage {
+
+    .is-selected {
+        background-color: $grey-3;
+    }
+
+    .th-checkbox {
+        width: 35px;
+    }
+
+    .th-customer {
+        width: 15%;
+    }
+
+    .th-product-list {
+        width: 16%;
+    }
+
+    .th-address {
+        width: 12%; 
+    }
+
+}
+
+
+// table of product-maange
+.table-product-manage {
+
+    .is-selected {
+        background-color: $grey-3;
+    }
+
+    .th-checkbox {
+        width: 35px;
+    }
+
+    .th-original,
+    .th-discount {
+        width: 10%;
+    }
+
+    .th-product,
+    .th-status {
+        width: 25%;
+    }
+
+    .th-inventory {
+        width: 30%;
+    }
+}
+
+
+
+// dropdown in table 
+// ---------------------------
+.cell {
+    .dropdown {
+        display: inline-block;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+        max-width: 180px;
+    
+        &__btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 10%;
+            width: 100%;
+            max-width: 180px;
+            color: #fff;
+            
+            span {
+                text-transform: uppercase;
+            }
+    
+            i {
+                color: #fff;
+                line-height: 1.5;
+                padding-right: 0;
+            }
+    
+            span + i {
+                padding-left: 10px;
+            }
+        }
+
+        &__list {
+            left: 0;
+            right: 0;
+        }
+
+        // orders manage color
+        // -------------------
+        &.is-unpaid {
+            background-color: $disabled;
+        }
+
+        &.is-paid {
+            background-color: $is-success;
+        }
+
+        &.is-shipping {
+            background-color: $in-progress;
+        }
+
+        &.is-done {
+            background-color: $is-done;
+        }
+
+        // product manage color
+        // --------------------
+        &.is-disabled {
+            background-color: $disabled;
+        }
+
+        &.is-published {
+            background-color: $is-success;
+        }
+
+    }
+}
+
+
+
+// Main__Footer
+// ----------------------------
+.main-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 24px; 
+}
+
+.page-nav {
+    display: flex;
+
+    // .page-nav-btn
+    &-btn {
+        flex: 0 0 auto;
+        line-height: 1;
+        text-align: center;
+        width: 46px;
+        padding: 16px;
+        color: #000;
+        background-color: #fff;
+        cursor: pointer;
+
+        &.is-selected,
+        &:hover {
+            color: #fff;
+            background-color: #000;
+        }
+
+        + .page-nav-btn {
+            margin-left: 2px;
+        }
+    }
+}
+
